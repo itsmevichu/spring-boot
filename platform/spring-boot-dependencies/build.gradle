@@ -65,7 +65,7 @@ bom {
 			releaseNotes("https://github.com/eclipse-ee4j/angus-mail/releases/tag/{version}")
 		}
 	}
-	library("Artemis", "2.50.0") {
+	library("Artemis", "2.51.0") {
 		group("org.apache.artemis") {
 			bom("artemis-bom") {
 				permit("org.apache.activemq:artemis-amqp-protocol")
@@ -490,7 +490,7 @@ bom {
 			dependencyManagementDeclaredIn("org.glassfish.jaxb:jaxb-bom") {
 				excluding { candidate -> candidate.classifier().equals("sources") }
 				excluding { candidate ->
-					def permittedGroups = Set.of("org.glassfix.jaxb", "com.sun.xml.bind")
+					def permittedGroups = Set.of("org.glassfish.jaxb", "com.sun.xml.bind")
 					return !permittedGroups.contains(candidate.groupId())
 				}
 			}
@@ -948,7 +948,12 @@ bom {
 				.formatted(version.major(), version.minor()), "jakarta.ws.rs")
 		}
 	}
-	library("Jakarta XML Bind", "4.0.5") {
+	library("Jakarta XML Bind", "4.0.4") {
+		alignWith {
+			version {
+				from "org.glassfish.jaxb:jaxb-core"
+			}
+		}
 		group("jakarta.xml.bind") {
 			modules = [
 				"jakarta.xml.bind-api"
@@ -1818,7 +1823,7 @@ bom {
 			javadoc("https://javadoc.io/doc/org.messaginghub/pooled-jms/{version}", "org.messaginghub.pooled.jms")
 		}
 	}
-	library("Postgresql", "42.7.9") {
+	library("Postgresql", "42.7.10") {
 		group("org.postgresql") {
 			modules = [
 				"postgresql"
